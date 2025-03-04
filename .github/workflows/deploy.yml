@@ -20,6 +20,8 @@ jobs:
       - name: Build Docker image from code
         run: |
           # Переходим в папку с проектом и строим образ
+          pwd 
+          ls 
           docker build -f LinkShortenerSite/Dockerfile -t link-shortner-site:latest LinkShortenerSite/
 
       - name: Log in to DockerHub
