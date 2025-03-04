@@ -1,0 +1,21 @@
+name: Print Secret Variable
+
+on:
+  push:
+    branches:
+      - main  # или любая другая ветка, с которой будет запускаться workflow
+
+jobs:
+  print-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Print secret variable
+        run: |
+          echo "Your secret value is: ${{ secrets.DOCKER_USERNAME }}"
+
+
+    
