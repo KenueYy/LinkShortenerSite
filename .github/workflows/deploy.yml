@@ -25,8 +25,8 @@ jobs:
 
       - name: Push Docker image to DockerHub (если используете Docker Hub)
         run: |
-          docker tag LinkShortnerSite:latest kenueyy/LinkShortnerSite:latest
-          docker push kenueyy/LinkShortnerSite:latest
+          docker tag link-shortner-site:latest kenueyy/link-shortner-site:latest
+          docker push kenueyy/link-shortner-site:latest
 
       - name: SSH to server and deploy the Docker container
         uses: appleboy/ssh-action@v0.1.5
