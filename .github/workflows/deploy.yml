@@ -8,6 +8,7 @@ on:
 jobs:
   print-secret:
     runs-on: ubuntu-latest
+    environment: secrets  # Укажите здесь нужное окружение
 
     steps:
       - name: Checkout repository
