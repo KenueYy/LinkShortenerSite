@@ -62,7 +62,7 @@ jobs:
             docker pull kenuey/link-shortner-site:latest
             docker stop your-app-container || true
             docker rm your-app-container || true
-            docker run -d --name your-app-container -p 80:80 kenueyy/link-shortner-site:latest
+            docker run -d --name your-app-container -p 80:80 kenuey/link-shortner-site:latest
           debug: true
 
   
