@@ -20,6 +20,7 @@ jobs:
       - name: Build Docker image
         run: |
           pwd
+          ls
           docker build -t link-shortner-site:latest /LinkShortenerSite/Dockerfile
 
       - name: Tag Docker image
