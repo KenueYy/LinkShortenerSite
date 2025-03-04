@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Одностраничный сайт</title>
+    <script>
+        async function sendRequest() {
+            var inputField = document.getElementById("inputField");
+            var responseMessage = document.getElementById("response");
+            var userInput = inputField.value.trim();
+
+            if (!userInput) {
+                responseMessage.innerHTML = "Пожалуйста, введите ссылку!";
+                return;
+            }
+
+            responseMessage.innerHTML = "Отправка запроса...";
+
+            try {
+                let response = await fetch("/api/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ input: userInput })
+                });
+                let data = await response.json();
+                responseMessage.innerHTML = "Ваша ссылка: " + data.message;
+            } catch (error) {
+                responseMessage.innerHTML = "Ошибка при отправке запроса!";
+                console.error("Ошибка:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Отправить запрос</h1>
+    <input type="text" id="inputField" placeholder="Введите ссылку...">
+    <button onclick="sendRequest()">Отправить</button>
+    <div id="response" class="response">Ответ от сервера будет здесь...</div>
+</div>
+</body>
+</html>

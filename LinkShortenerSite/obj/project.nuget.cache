@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ALSBggKuVssZGQj6CaqiDon5KmErqrcmiJEaPchpt2RmvCrlqjBAcYdfRP2L1KkOR3VjxtsKBJMIt2wKKiYvTA==",
+  "success": true,
+  "projectFilePath": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\LinkShortenerSite.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Кирилл\\.nuget\\packages\\google.protobuf\\3.29.3\\google.protobuf.3.29.3.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\grpc.core.api\\2.67.0\\grpc.core.api.2.67.0.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\grpc.net.client\\2.67.0\\grpc.net.client.2.67.0.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\grpc.net.common\\2.67.0\\grpc.net.common.2.67.0.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\grpc.tools\\2.70.0\\grpc.tools.2.70.0.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

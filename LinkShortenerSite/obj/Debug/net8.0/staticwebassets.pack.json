@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\Index.html",
+      "PackagePath": "staticwebassets\\Index.html"
+    },
+    {
+      "Id": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\styles.css",
+      "PackagePath": "staticwebassets\\styles.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LinkShortenerSite.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.LinkShortenerSite.props",
+      "PackagePath": "build\\LinkShortenerSite.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.LinkShortenerSite.props",
+      "PackagePath": "buildMultiTargeting\\LinkShortenerSite.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.LinkShortenerSite.props",
+      "PackagePath": "buildTransitive\\LinkShortenerSite.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
