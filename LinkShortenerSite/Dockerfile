@@ -2,13 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Копируем .csproj файл из подкаталога
+# Копируем .csproj файл из папки LinkShortenerSite в контейнер
 COPY ["LinkShortenerSite/LinkShortenerSite.csproj", "LinkShortenerSite/"]
 
 # Восстанавливаем зависимости
 RUN dotnet restore "LinkShortenerSite/LinkShortenerSite.csproj"
 
-# Копируем все остальные файлы проекта, включая папку Protos
+# Копируем все файлы проекта, включая папку Protos
 COPY LinkShortenerSite/. ./LinkShortenerSite/
 
 # Переходим в директорию с проектом и строим приложение
