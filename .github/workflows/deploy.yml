@@ -43,6 +43,14 @@ jobs:
     steps:
       - name: Checkout code from repository
         uses: actions/checkout@v2
+        
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.5
