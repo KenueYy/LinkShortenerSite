@@ -58,6 +58,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Attempting SSH connection"
+            echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
             docker pull kenueyy/link-shortner-site:latest
             docker stop your-app-container || true
             docker rm your-app-container || true
