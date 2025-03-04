@@ -4,7 +4,7 @@ WORKDIR /src
 # Убедитесь, что путь корректный относительно контекста сборки
 COPY ["LinkShortenerSite.csproj", "LinkShortenerSite/"]
 
-RUN dotnet restore "LinkShortenerSite.csproj"
+RUN dotnet restore "LinkShortenerSite/LinkShortenerSite.csproj"
 
 COPY . .
 
