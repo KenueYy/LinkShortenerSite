@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Копируем .csproj файл из папки LinkShortenerSite в контейнер
-COPY ["LinkShortenerSite/LinkShortenerSite.csproj", "LinkShortenerSite/"]
+COPY LinkShortenerSite/LinkShortenerSite.csproj LinkShortenerSite/
 
 # Восстанавливаем зависимости
 RUN dotnet restore "LinkShortenerSite/LinkShortenerSite.csproj"
