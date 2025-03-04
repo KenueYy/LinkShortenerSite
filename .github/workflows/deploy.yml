@@ -59,7 +59,7 @@ jobs:
           script: |
             echo "Attempting SSH connection"
             echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-            docker pull kenueyy/link-shortner-site:latest
+            docker pull kenuey/link-shortner-site:latest
             docker stop your-app-container || true
             docker rm your-app-container || true
             docker run -d --name your-app-container -p 80:80 kenueyy/link-shortner-site:latest
