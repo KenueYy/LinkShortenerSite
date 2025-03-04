@@ -9,19 +9,18 @@ namespace LinkShortener;
 [ApiController]
 public class SubmitController : ControllerBase
 {
-    public static string HOST => "https://localhost:7065";
     [HttpPost]
     public async Task<IActionResult> Submit([FromBody] UserInput input)
     {
         Console.WriteLine($"Вы отправили: {input.Input}");
 
         var request = input.Input.Replace($"https:/", "");
-        using var channel = GrpcChannel.ForAddress("http://localhost:5213");
+        using var channel = GrpcChannel.ForAddress(Globals.GRPC_SHORTENER_HOST);
         var client = new DBService.DBServiceClient(channel);
 
         var response = await client.CreateAsync(new LinkRequest { Link = request });
 
-        return Ok(new { message = $"{HOST}/{response.Code}" });
+        return Ok(new { message = $"{Globals.HTTPS_SHORTENER_HOST}/{response.Code}" });
     }
 }
 
