@@ -44,38 +44,12 @@ jobs:
       - name: Checkout code from repository
         uses: actions/checkout@v2
   
-      - name: Debug SSH Key
-        run: |
-          echo "Private Key:"
-          echo "${{ secrets.SSH_PRIVATE_KEY }}"
-      
-      - name: Set up SSH key
-        run: |
-          mkdir -p /home/runner/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
-          chmod 600 /home/runner/.ssh/id_rsa
-          eval $(ssh-agent -s)
-          ssh-add /home/runner/.ssh/id_rsa
-          # Проверка наличия ключа в агенте
-          ssh-add -l
-  
-      - name: Add SSH server to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts  # Проверка добавления
-  
-      - name: Debug SSH connection
-        run: |
-          ssh -i /home/runner/.ssh/id_rsa -v deploy@${{ secrets.SERVER_IP }} echo "SSH Connection successful"
-  
       - name: Deploy to server with debug
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
-          key: /home/runner/.ssh/id_rsa
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Attempting SSH connection"
             docker pull kenueyy/link-shortner-site:latest
