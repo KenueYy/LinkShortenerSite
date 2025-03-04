@@ -32,8 +32,8 @@ jobs:
 
       - name: Push Docker image to DockerHub
         run: |
-          docker tag link-shortner-site:latest kenueyy/link-shortner-site:latest
-          docker push kenueyy/link-shortner-site:latest
+          docker tag link-shortner-site:latest kenuey/link-shortner-site:latest
+          docker push kenuey/link-shortner-site:latest
 
   deploy:
     runs-on: ubuntu-latest
