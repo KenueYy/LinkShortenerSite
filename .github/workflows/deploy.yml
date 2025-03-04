@@ -19,7 +19,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t link-shortner-site:latest .
+          pwd
+          docker build -t link-shortner-site:latest ./LinkShortenerSite/Dockerfile
 
       - name: Tag Docker image
         run: |
