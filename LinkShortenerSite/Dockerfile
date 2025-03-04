@@ -9,7 +9,7 @@ COPY LinkShortenerSite/LinkShortenerSite.csproj LinkShortenerSite/
 RUN dotnet restore "LinkShortenerSite/LinkShortenerSite.csproj"
 
 # Копируем все файлы проекта, включая папку Protos
-COPY LinkShortenerSite/. ./LinkShortenerSite/
+COPY LinkShortenerSite/. LinkShortenerSite/
 
 # Переходим в директорию с проектом и строим приложение
 WORKDIR "/src/LinkShortenerSite"
