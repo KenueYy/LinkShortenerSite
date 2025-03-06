@@ -60,9 +60,9 @@ jobs:
             echo "Attempting SSH connection"
             echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
             docker pull kenuey/link-shortner-site:latest
-            docker stop your-app-container || true
-            docker rm your-app-container || true
-            docker run -d --name govno -p 8888:8888 kenuey/link-shortner-site:latest
+            docker stop link-shortener || true
+            docker rm link-shortener || true
+            docker run -d --name link-shortener -p 80:80 kenuey/link-shortner-site:latest
           debug: true
 
   
