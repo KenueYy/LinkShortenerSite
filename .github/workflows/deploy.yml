@@ -64,6 +64,5 @@ jobs:
             docker rm link-shortener || true
             docker run -d --name link-shortener -p 80:80 kenuey/link-shortner-site:latest
           debug: true
-          
 
   
