@@ -2,8 +2,9 @@ name: Build and Deploy
 
 on:
   push:
-    tags:
-      -build site
+    branches:
+      - main
+    commit-message: '/-build site/'
 
 jobs:
   build:
