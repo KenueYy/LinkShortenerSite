@@ -15,7 +15,7 @@ class Program
 
         app.MapControllers();
 
-        app.MapFallbackToFile("index.html");
+        app.MapFallbackToFile("Index.html");
 
         app.Run("http://0.0.0.0:8888");
     }
