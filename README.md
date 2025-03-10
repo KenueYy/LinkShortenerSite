@@ -1,1 +1,2 @@
-[![Build and Deploy](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/deploy.yml)
+[![Build and Deploy](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/build-and-deploy-site.yml/badge.svg)](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/build-and-deploy-site.yml)
+[![Build and Deploy Service](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/build-and-deploy-service.yml/badge.svg)](https://github.com/KenueYy/LinkShortenerSite/actions/workflows/build-and-deploy-service.yml)
