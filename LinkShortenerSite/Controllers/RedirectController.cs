@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LinkShortener;
 
-[ApiController, Route("redirect/{shortCode}")]
+[ApiController, Route("{shortCode}")]
 public class RedirectController : ControllerBase
 {
     [HttpGet]
     public async Task<IResult> GetRedirect(string shortCode)
     {
+        Console.WriteLine($"Link shortCode: {shortCode}");
         var link = await GetLink(shortCode);
         if (string.IsNullOrEmpty(link))
         {
+            Console.WriteLine($"Link shortCode is empty");
             return Results.StatusCode(404);
         }
 
