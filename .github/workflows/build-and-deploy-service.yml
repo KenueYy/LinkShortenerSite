@@ -19,6 +19,8 @@ jobs:
 
       - name: Build Docker image from code
         run: |
+          pwd 
+          ls
           docker build -f LinkShortenerService/Dockerfile -t link-shortner-service:latest LinkShortenerService/
 
       - name: Log in to DockerHub
