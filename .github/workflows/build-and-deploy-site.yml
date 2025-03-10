@@ -59,7 +59,7 @@ jobs:
             docker pull kenuey/link-shortner-site:latest
             docker stop link-shortener || true
             docker rm link-shortener || true
-            docker run -d --name link-shortener -p 80:80 \
+            docker run -d --name link-shortener -p 8080:8080 \
               -e GRPC_SERVER_IP=${{ secrets.GRPC_SERVER_IP }} \
               -e HTTPS_SERVER_IP=${{ secrets.HTTPS_SERVER_IP }} \
               kenuey/link-shortner-site:latest
