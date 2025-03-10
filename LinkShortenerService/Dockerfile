@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["LinkShortenerSite/LinkShortenerService/LinkShortenerService.csproj", "LinkShortenerService/"]
-RUN dotnet restore "LinkShortenerSite/LinkShortenerService/LinkShortenerService.csproj"
+COPY ["LinkShortenerService/LinkShortenerService.csproj", "LinkShortenerService/"]
+RUN dotnet restore "LinkShortenerService/LinkShortenerService.csproj"
 COPY . . 
-WORKDIR "/src/LinkShortenerSite/LinkShortenerService"
+WORKDIR "/src/LinkShortenerService"
 RUN dotnet build "LinkShortenerService.csproj" -c Release -o /app/build
 
 FROM build AS publish
