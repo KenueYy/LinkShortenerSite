@@ -13,7 +13,7 @@ public class SubmitController : ControllerBase
     public async Task<IActionResult> Submit([FromBody] UserInput input)
     {
         Console.WriteLine($"Вы отправили: {input.Input}");
-
+        Console.WriteLine($"Address:{Globals.GRPC_SHORTENER_HOST}");
         var request = input.Input.Replace($"https://", "");
         using var channel = GrpcChannel.ForAddress(Globals.GRPC_SHORTENER_HOST);
         var client = new DataManager.DataManagerClient(channel);
