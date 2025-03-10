@@ -19,9 +19,6 @@ jobs:
 
       - name: Build Docker image from code
         run: |
-          # Переходим в папку с проектом и строим образ
-          pwd 
-          ls 
           docker build -f LinkShortenerSite/Dockerfile -t link-shortner-site:latest LinkShortenerSite/
 
       - name: Log in to DockerHub
@@ -63,9 +60,9 @@ jobs:
             docker stop link-shortener || true
             docker rm link-shortener || true
             docker run -d --name link-shortener -p 80:80 \
-            -e GRPC_SERVER_IP=${{ secrets.GRPC_SERVER_IP }} \
-            -e HTTPS_SERVER_IP=${{ secrets.HTTPS_SERVER_IP }} \
-            kenuey/link-shortner-site:latest
+              -e GRPC_SERVER_IP=${{ secrets.GRPC_SERVER_IP }} \
+              -e HTTPS_SERVER_IP=${{ secrets.HTTPS_SERVER_IP }} \
+              kenuey/link-shortner-site:latest
           debug: true
 
 
