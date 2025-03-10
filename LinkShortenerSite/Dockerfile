@@ -17,6 +17,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
 
-ENTRYPOINT ["dotnet", "LinkShortenerSite.dll", "--host=0.0.0.0", "--port=80"]
+ENTRYPOINT ["dotnet", "LinkShortenerSite.dll", "--host=0.0.0.0", "--port=8080"]
