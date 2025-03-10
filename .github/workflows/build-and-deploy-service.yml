@@ -74,4 +74,3 @@ jobs:
               kenuey/link-shortner-service:latest 
           debug: true
 
-  
