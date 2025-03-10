@@ -25,7 +25,7 @@
                     body: JSON.stringify({ input: userInput })
                 });
                 let data = await response.json();
-                responseMessage.innerHTML = "Ваша ссылка:" + data.message;
+                responseMessage.innerHTML = "Ваша ссылка: " + data.message;
             } catch (error) {
                 responseMessage.innerHTML = "Ошибка при отправке запроса!";
                 console.error("Ошибка:", error);
