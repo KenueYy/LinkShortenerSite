@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "LinkShortenerServer";
+package linkShortener;
+
+service DBService {
+  rpc Create(LinkRequest) returns (LinkResponse);
+  rpc Get(ShortCodeRequest) returns (ShortCodeResponse);
+}
+
+message LinkRequest {
+  string link = 1;
+}
+
+message ShortCodeRequest{
+  string code = 1;
+}
+
+message ShortCodeResponse{
+  string message = 1;
+  string link = 2;
+}
+
+message LinkResponse {
+  string message = 1;
+  string code = 2;
+}
