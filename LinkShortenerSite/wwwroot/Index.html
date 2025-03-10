@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Одностраничный сайт</title>
+    <title>Укороти свою ссылку</title>
     <script>
         async function sendRequest() {
             var inputField = document.getElementById("inputField");
@@ -25,7 +25,7 @@
                     body: JSON.stringify({ input: userInput })
                 });
                 let data = await response.json();
-                responseMessage.innerHTML = "Ваша ссылка: <strong>" + data.message + "</strong>";
+                responseMessage.innerHTML = "Ваша ссылка:" + data.message;
             } catch (error) {
                 responseMessage.innerHTML = "Ошибка при отправке запроса!";
                 console.error("Ошибка:", error);
