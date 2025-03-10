@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D/FNkbxipyxvZX9K4vdNkwFLInFwGYSsk29/aTTp+38=",
+  "Hash": "TNORx3qkZkcuQ9R5wKkt9C81ksSFxBJbOJAxR70LcME=",
   "Source": "LinkShortenerSite",
   "BasePath": "_content/LinkShortenerSite",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "LinkShortenerSite\\wwwroot",
       "Source": "LinkShortenerSite",
-      "ContentRoot": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
+      "ContentRoot": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
       "BasePath": "_content/LinkShortenerSite",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\Index.html",
+      "Identity": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\Index.html",
       "SourceId": "LinkShortenerSite",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
+      "ContentRoot": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
       "BasePath": "_content/LinkShortenerSite",
       "RelativePath": "Index.html",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Index.html"
     },
     {
-      "Identity": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\styles.css",
+      "Identity": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\styles.css",
       "SourceId": "LinkShortenerSite",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Кирилл\\RiderProjects\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
+      "ContentRoot": "D:\\Work\\LinkShortenerSite\\LinkShortenerSite\\wwwroot\\",
       "BasePath": "_content/LinkShortenerSite",
       "RelativePath": "styles.css",
       "AssetKind": "All",

@@ -28,11 +28,11 @@ namespace LinkShortenerClient {
             "CgtMaW5rUmVxdWVzdBIMCgRsaW5rGAEgASgJIiAKEFNob3J0Q29kZVJlcXVl",
             "c3QSDAoEY29kZRgBIAEoCSIyChFTaG9ydENvZGVSZXNwb25zZRIPCgdtZXNz",
             "YWdlGAEgASgJEgwKBGxpbmsYAiABKAkiLQoMTGlua1Jlc3BvbnNlEg8KB21l",
-            "c3NhZ2UYASABKAkSDAoEY29kZRgCIAEoCTKYAQoJREJTZXJ2aWNlEkEKBkNy",
-            "ZWF0ZRIaLmxpbmtTaG9ydGVuZXIuTGlua1JlcXVlc3QaGy5saW5rU2hvcnRl",
-            "bmVyLkxpbmtSZXNwb25zZRJICgNHZXQSHy5saW5rU2hvcnRlbmVyLlNob3J0",
-            "Q29kZVJlcXVlc3QaIC5saW5rU2hvcnRlbmVyLlNob3J0Q29kZVJlc3BvbnNl",
-            "QhaqAhNMaW5rU2hvcnRlbmVyQ2xpZW50YgZwcm90bzM="));
+            "c3NhZ2UYASABKAkSDAoEY29kZRgCIAEoCTKaAQoLRGF0YU1hbmFnZXISQQoG",
+            "Q3JlYXRlEhoubGlua1Nob3J0ZW5lci5MaW5rUmVxdWVzdBobLmxpbmtTaG9y",
+            "dGVuZXIuTGlua1Jlc3BvbnNlEkgKA0dldBIfLmxpbmtTaG9ydGVuZXIuU2hv",
+            "cnRDb2RlUmVxdWVzdBogLmxpbmtTaG9ydGVuZXIuU2hvcnRDb2RlUmVzcG9u",
+            "c2VCFqoCE0xpbmtTaG9ydGVuZXJDbGllbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

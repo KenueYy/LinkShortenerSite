@@ -8,9 +8,9 @@
 using grpc = global::Grpc.Core;
 
 namespace LinkShortenerClient {
-  public static partial class DBService
+  public static partial class DataManager
   {
-    static readonly string __ServiceName = "linkShortener.DBService";
+    static readonly string __ServiceName = "linkShortener.DataManager";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -76,30 +76,30 @@ namespace LinkShortenerClient {
       get { return global::LinkShortenerClient.LinkShortenerReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Client for DBService</summary>
-    public partial class DBServiceClient : grpc::ClientBase<DBServiceClient>
+    /// <summary>Client for DataManager</summary>
+    public partial class DataManagerClient : grpc::ClientBase<DataManagerClient>
     {
-      /// <summary>Creates a new client for DBService</summary>
+      /// <summary>Creates a new client for DataManager</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public DBServiceClient(grpc::ChannelBase channel) : base(channel)
+      public DataManagerClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for DBService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for DataManager that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public DBServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public DataManagerClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected DBServiceClient() : base()
+      protected DataManagerClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected DBServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected DataManagerClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
@@ -145,9 +145,9 @@ namespace LinkShortenerClient {
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected override DBServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override DataManagerClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new DBServiceClient(configuration);
+        return new DataManagerClient(configuration);
       }
     }
 

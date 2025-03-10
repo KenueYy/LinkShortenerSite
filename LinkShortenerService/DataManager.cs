@@ -1,29 +1,58 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using Grpc.Core;
+using LinkShortenerServer;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace LinkShortener;
 
-public class DataManager
+public interface IDBGrpcService
 {
-    private readonly IDBService _dbService;
-    private readonly IDistributedCache _cache;
+    public Task<LinkResponse> Create(LinkRequest request, ServerCallContext context);
+    public Task<ShortCodeResponse> Get(ShortCodeRequest request, ServerCallContext context);
+}
 
-    public DataManager(DBService dbService, IDistributedCache cache)
+public interface IDBService
+{
+    public string Get(string shortCode);
+}
+
+public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBGrpcService, IDBService
+{
+    private readonly ApplicationContext _dbContext;
+    private readonly IDistributedCache _cache; 
+
+    public DataManager(ApplicationContext dbContext, IDistributedCache cache)
     {
+        _dbContext = dbContext;
         _cache = cache;
-        _dbService = dbService;
+    }
+    
+    public override Task<LinkResponse> Create(LinkRequest request, ServerCallContext context)
+    {
+        var linkInfo = new LinkInfo
+        {
+            LinkId = UidGenerator.Generate(), UserLink = request.Link
+        };
+            
+        _dbContext.LinkTables.AddRange(linkInfo);
+        _dbContext.SaveChanges();
+        return Task.FromResult(new LinkResponse
+        { 
+            Message = $"Your Short Link Code : {linkInfo.LinkId}",
+            Code = linkInfo.LinkId
+        });
     }
 
-    public async Task<string> GetLink(string shortCode)
+    public override async Task<ShortCodeResponse> Get(ShortCodeRequest request, ServerCallContext context)
     {
-        var cachedCountKey = $"shortlink_count:{shortCode}";
-        var cachedLinkKey = $"shortlink:{shortCode}";
+        var cachedCountKey = $"shortlink_count:{request.Code}";
+        var cachedLinkKey = $"shortlink:{request.Code}";
         var cachedLink = await _cache.GetStringAsync(cachedLinkKey);
         
         if (!string.IsNullOrEmpty(cachedLink))
         {
             Console.WriteLine("Link from cache");
-            return cachedLink;
+            return new ShortCodeResponse{Message = $"Your link : {cachedLink}",Link = cachedLink};
         }
 
         var cachedCountValue = await _cache.GetStringAsync(cachedCountKey);
@@ -33,7 +62,7 @@ public class DataManager
         await _cache.SetStringAsync(cachedCountKey, count.ToString());
 
         Console.WriteLine("Call DB");
-        var link = _dbService.Get(shortCode);
+        var link = Get(request.Code);
 
         if (count >= 3)
         {
@@ -42,6 +71,20 @@ public class DataManager
             await _cache.RemoveAsync(cachedCountKey);
         }
         
-        return link;
+        return new ShortCodeResponse{Message = $"Your link : {link}", Link = link};
+        
+    }
+
+    public string Get(string shortCode)
+    {
+        StringBuilder result = new StringBuilder("https://");
+        var link = _dbContext.LinkTables.FirstOrDefault(x => x.LinkId == shortCode);
+            
+        if (link == null)
+        {
+            return string.Empty;
+        }
+        result.Append(link.UserLink); 
+        return result.ToString();
     }
 }

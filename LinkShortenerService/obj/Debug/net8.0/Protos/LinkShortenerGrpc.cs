@@ -8,9 +8,9 @@
 using grpc = global::Grpc.Core;
 
 namespace LinkShortenerServer {
-  public static partial class DBService
+  public static partial class DataManager
   {
-    static readonly string __ServiceName = "linkShortener.DBService";
+    static readonly string __ServiceName = "linkShortener.DataManager";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -76,9 +76,9 @@ namespace LinkShortenerServer {
       get { return global::LinkShortenerServer.LinkShortenerReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of DBService</summary>
-    [grpc::BindServiceMethod(typeof(DBService), "BindService")]
-    public abstract partial class DBServiceBase
+    /// <summary>Base class for server-side implementations of DataManager</summary>
+    [grpc::BindServiceMethod(typeof(DataManager), "BindService")]
+    public abstract partial class DataManagerBase
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::LinkShortenerServer.LinkResponse> Create(global::LinkShortenerServer.LinkRequest request, grpc::ServerCallContext context)
@@ -97,7 +97,7 @@ namespace LinkShortenerServer {
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(DBServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(DataManagerBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Create, serviceImpl.Create)
@@ -109,7 +109,7 @@ namespace LinkShortenerServer {
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, DBServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, DataManagerBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_Create, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::LinkShortenerServer.LinkRequest, global::LinkShortenerServer.LinkResponse>(serviceImpl.Create));
       serviceBinder.AddMethod(__Method_Get, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::LinkShortenerServer.ShortCodeRequest, global::LinkShortenerServer.ShortCodeResponse>(serviceImpl.Get));

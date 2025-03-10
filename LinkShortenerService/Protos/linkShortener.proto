@@ -3,7 +3,7 @@
 option csharp_namespace = "LinkShortenerServer";
 package linkShortener;
 
-service DBService {
+service DataManager {
   rpc Create(LinkRequest) returns (LinkResponse);
   rpc Get(ShortCodeRequest) returns (ShortCodeResponse);
 }

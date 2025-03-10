@@ -14,9 +14,9 @@ public class SubmitController : ControllerBase
     {
         Console.WriteLine($"Вы отправили: {input.Input}");
 
-        var request = input.Input.Replace($"https:/", "");
+        var request = input.Input.Replace($"https://", "");
         using var channel = GrpcChannel.ForAddress(Globals.GRPC_SHORTENER_HOST);
-        var client = new DBService.DBServiceClient(channel);
+        var client = new DataManager.DataManagerClient(channel);
 
         var response = await client.CreateAsync(new LinkRequest { Link = request });
 
