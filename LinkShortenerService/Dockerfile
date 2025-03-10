@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["LinkShortenerService/LinkShortenerService.csproj", "LinkShortenerService/"]
 RUN dotnet restore "LinkShortenerSite/LinkShortenerService.csproj"
-COPY . . /src/LinkShortenerService/
+COPY . . 
 WORKDIR "/src/LinkShortenerService"
 RUN dotnet build "LinkShortenerService.csproj" -c Release -o /app/build
 
