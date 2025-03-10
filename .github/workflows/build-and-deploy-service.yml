@@ -61,7 +61,17 @@ jobs:
             docker pull kenuey/link-shortner-service:latest
             docker stop link-shortener-service || true
             docker rm link-shortener-service || true
-            docker run -d --name link-shortener-service -p 12122:12122 kenuey/link-shortner-service:latest
+            docker run -d --name link-shortener-service -p 12122:12122 \
+              -e GRPC_SERVER_IP=${{ secrets.GRPC_SERVER_IP }} \
+              -e HTTPS_SERVER_IP=${{ secrets.HTTPS_SERVER_IP }} \
+              -e DB_SERVER_ADDRESS=${{ secrets.DB_SERVER_ADDRESS }} \
+              -e DB_SERVER_PORT=${{ secrets.DB_SERVER_PORT }} \
+              -e DB_NAME=${{ secrets.DB_NAME }} \
+              -e DB_USER_NAME=${{ secrets.DB_USER_NAME }} \
+              -e DB_USER_PASSWORD=${{ secrets.DB_USER_PASSWORD }} \
+              -e CACHE_SERVER_IP=${{ secrets.CACHE_SERVER_IP }} \
+              -e REDIS_PORT=${{ secrets.REDIS_PORT }} \
+              kenuey/link-shortner-service:latest 
           debug: true
 
   
