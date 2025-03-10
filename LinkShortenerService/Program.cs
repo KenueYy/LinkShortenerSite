@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkShortener;
@@ -15,7 +16,7 @@ class Program
         
         
         builder.Services.AddStackExchangeRedisCache(options => {
-            options.Configuration = "45.89.65.103:6379";
+            options.Configuration = $"{Globals.SERVER_IP}:{Globals.REDIS_PORT}";
         });
 
         builder.Services.AddHostedService<CacheSyncService>();

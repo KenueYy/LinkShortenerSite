@@ -17,6 +17,6 @@ class Program
 
         app.MapFallbackToFile("Index.html");
 
-        app.Run("http://0.0.0.0:80");
+        app.Run();
     }
 }
