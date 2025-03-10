@@ -16,7 +16,7 @@ class Program
         
         
         builder.Services.AddStackExchangeRedisCache(options => {
-            options.Configuration = $"{Globals.SERVER_IP}:{Globals.REDIS_PORT}";
+            options.Configuration = $"{Globals.CACHE_SERVER_IP}:{Globals.REDIS_PORT}";
         });
 
         var app = builder.Build();

@@ -14,7 +14,7 @@ public class ApplicationContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql($"Host={Globals.DB_SERVER_ADDRES};" +
+            optionsBuilder.UseNpgsql($"Host={Globals.DB_SERVER_ADDRESS};" +
                                      $"Port={Globals.DB_SERVER_PORT};" +
                                      $"Database={Globals.DB_NAME};" +
                                      $"Username={Globals.DB_USER_NAME};" +
