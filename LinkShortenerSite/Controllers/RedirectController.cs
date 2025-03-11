@@ -1,4 +1,5 @@
-﻿using Grpc.Net.Client;
+﻿using System.Text;
+using Grpc.Net.Client;
 using LinkShortenerClient;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +13,14 @@ public class RedirectController : ControllerBase
     {
         Console.WriteLine($"Link shortCode: {shortCode}");
         var link = await GetLink(shortCode);
+
         if (string.IsNullOrEmpty(link))
         {
             Console.WriteLine($"Link shortCode is empty");
             return Results.StatusCode(404);
         }
-
+        
+        link = Encoding.UTF8.GetString(Convert.FromBase64String(link));
         return Results.Redirect(link);
     }
 

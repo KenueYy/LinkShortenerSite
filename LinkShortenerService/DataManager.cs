@@ -65,7 +65,8 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
 
         Console.WriteLine("Call DB");
         var link = Get(request.Code);
-
+        link = Convert.ToBase64String(Encoding.UTF8.GetBytes(link));
+        
         if (count >= 3)
         {
             Console.WriteLine("Write link in cache");
@@ -78,15 +79,14 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
 
     public string Get(string shortCode)
     {
-        StringBuilder result = new StringBuilder("https://");
         var link = _dbContext.LinkTables.FirstOrDefault(x => x.LinkId == shortCode);
             
-        if (link == null)
+        if (link == null || string.IsNullOrEmpty(link.UserLink))
         {
             return string.Empty;
         }
-        result.Append(link.UserLink); 
-        return result.ToString();
+
+        return link.UserLink;
     }
     
     private async Task SetInCache(string key, string value, TimeSpan lifeTime)
