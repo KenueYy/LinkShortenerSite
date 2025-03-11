@@ -19,12 +19,14 @@ public interface IDBService
 public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBGrpcService, IDBService
 {
     private readonly ApplicationContext _dbContext;
-    private readonly IDistributedCache _cache; 
+    private readonly IDistributedCache _cache;
+    private readonly CacheSyncService _syncService;
 
-    public DataManager(ApplicationContext dbContext, IDistributedCache cache)
+    public DataManager(ApplicationContext dbContext, IDistributedCache cache, CacheSyncService syncService)
     {
         _dbContext = dbContext;
         _cache = cache;
+        _syncService = syncService;
     }
     
     public override async Task<LinkResponse> Create(LinkRequest request, ServerCallContext context)
@@ -36,11 +38,7 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
             
         await SetInCache(linkInfo.LinkId, linkInfo.UserLink, TimeSpan.FromMinutes(15));
 
-        Task.Run(async () =>
-        {
-            _dbContext.LinkTables.AddRange(linkInfo);
-            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
-        });
+        _syncService.SyncCacheToDatabase(linkInfo);
         
         return new LinkResponse
         { 

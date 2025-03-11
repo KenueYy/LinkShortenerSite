@@ -17,14 +17,17 @@ public class CacheSyncService : BackgroundService
     {
         while (!cancellationToken.IsCancellationRequested)
         {
-            await SyncCacheToDatabase();
-            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
+
+            await Task.Delay(1000, cancellationToken);
         }
     }
 
-    private async Task SyncCacheToDatabase()
+    public async Task SyncCacheToDatabase(LinkInfo linkInfo)
     {
         using var scope = _serviceScopeFactory.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+        
+        dbContext.LinkTables.AddRange(linkInfo);
+        await dbContext.SaveChangesAsync();
     }
 }

@@ -13,6 +13,7 @@ class Program
         builder.Services.AddControllers();
         builder.Services.AddDbContext<ApplicationContext>();
         builder.Services.AddScoped<DataManager>();
+        builder.Services.AddHostedService<CacheSyncService>();
         
         
         builder.Services.AddStackExchangeRedisCache(options => {
