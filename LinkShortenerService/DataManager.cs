@@ -35,8 +35,12 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
         };
             
         await SetInCache(linkInfo.LinkId, linkInfo.UserLink, TimeSpan.FromMinutes(15));
-        _dbContext.LinkTables.AddRange(linkInfo);
-        _dbContext.SaveChanges();
+
+        Task.Run(() =>
+        {
+            _dbContext.LinkTables.AddRange(linkInfo);
+            _dbContext.SaveChangesAsync();
+        });
         
         return new LinkResponse
         { 
