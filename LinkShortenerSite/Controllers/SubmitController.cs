@@ -1,4 +1,5 @@
-﻿using Grpc.Net.Client;
+﻿using System.Text;
+using Grpc.Net.Client;
 using LinkShortenerClient;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,9 @@ public class SubmitController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Submit([FromBody] UserInput input)
     {
-        Console.WriteLine($"Вы отправили: {input.Input}");
+        Console.WriteLine($"Вы отправили: {input.Input}");      
         Console.WriteLine($"Address:{Globals.GRPC_SHORTENER_HOST}");
-        var request = input.Input.Replace($"https://", "");
+        var request = Convert.ToBase64String(Encoding.UTF8.GetBytes(input.Input));
         using var channel = GrpcChannel.ForAddress(Globals.GRPC_SHORTENER_HOST);
         var client = new DataManager.DataManagerClient(channel);
 

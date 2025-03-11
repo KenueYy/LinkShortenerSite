@@ -27,20 +27,22 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
         _cache = cache;
     }
     
-    public override Task<LinkResponse> Create(LinkRequest request, ServerCallContext context)
+    public override async Task<LinkResponse> Create(LinkRequest request, ServerCallContext context)
     {
         var linkInfo = new LinkInfo
         {
-            LinkId = UidGenerator.Generate(), UserLink = request.Link
+            LinkId = UidGenerator.Generate(), UserLink = Encoding.UTF8.GetString(Convert.FromBase64String(request.Link))
         };
             
+        await SetInCache(linkInfo.LinkId, linkInfo.UserLink, TimeSpan.FromMinutes(15));
         _dbContext.LinkTables.AddRange(linkInfo);
         _dbContext.SaveChanges();
-        return Task.FromResult(new LinkResponse
+        
+        return new LinkResponse
         { 
             Message = $"Your Short Link Code : {linkInfo.LinkId}",
             Code = linkInfo.LinkId
-        });
+        };
     }
 
     public override async Task<ShortCodeResponse> Get(ShortCodeRequest request, ServerCallContext context)
@@ -59,7 +61,7 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
         var count = string.IsNullOrEmpty(cachedCountValue) ? 0 : int.Parse(cachedCountValue);
         count++;
         
-        await _cache.SetStringAsync(cachedCountKey, count.ToString());
+        await SetInCache(cachedCountKey, count.ToString(), TimeSpan.FromHours(3));
 
         Console.WriteLine("Call DB");
         var link = Get(request.Code);
@@ -67,7 +69,6 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
         if (count >= 3)
         {
             Console.WriteLine("Write link in cache");
-            await _cache.SetStringAsync(cachedLinkKey, link);
             await _cache.RemoveAsync(cachedCountKey);
         }
         
@@ -86,5 +87,13 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
         }
         result.Append(link.UserLink); 
         return result.ToString();
+    }
+    
+    private async Task SetInCache(string key, string value, TimeSpan lifeTime)
+    {
+        await _cache.SetStringAsync(key, value, new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = lifeTime
+        });
     }
 }
