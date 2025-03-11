@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Formats.Asn1;
+using System.Text;
 using Grpc.Core;
 using LinkShortenerServer;
 using Microsoft.Extensions.Caching.Distributed;
@@ -20,13 +21,15 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
 {
     private readonly ApplicationContext _dbContext;
     private readonly IDistributedCache _cache;
-    private readonly CacheSyncService _syncService;
 
-    public DataManager(ApplicationContext dbContext, IDistributedCache cache, CacheSyncService syncService)
+    private readonly IServiceScopeFactory _scopeFactory;
+    //private readonly CacheSyncService _syncService;
+
+    public DataManager(ApplicationContext dbContext, IDistributedCache cache, IServiceScopeFactory serviceScopeFactory)
     {
         _dbContext = dbContext;
         _cache = cache;
-        _syncService = syncService;
+        _scopeFactory = serviceScopeFactory;
     }
     
     public override async Task<LinkResponse> Create(LinkRequest request, ServerCallContext context)
@@ -38,7 +41,14 @@ public class DataManager : LinkShortenerServer.DataManager.DataManagerBase, IDBG
             
         await SetInCache(linkInfo.LinkId, linkInfo.UserLink, TimeSpan.FromMinutes(15));
 
-        _syncService.SyncCacheToDatabase(linkInfo);
+        var scope = _scopeFactory.CreateScope();
+
+        Task.Run(async () =>
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+            dbContext.LinkTables.AddRange(linkInfo);
+            await dbContext.SaveChangesAsync();
+        });
         
         return new LinkResponse
         { 
